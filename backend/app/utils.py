@@ -11,7 +11,7 @@ def connect_mongo(db_name: str):
     """
     db_client = connect(
         db=db_name,
-        host="mongodb://mongoDB:27017/",
+        host="mongodb://mongoContainer:27017/",
         username=os.environ.get('MONGO_ROOT_USER'),
         password=os.environ.get('MONGO_ROOT_PASSWORD'),
         serverSelectionTimeoutMS=3000,
