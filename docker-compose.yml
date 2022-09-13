@@ -2,7 +2,7 @@ version: '3'
 services:
   flask:
     build: backend
-    container_name: backend-flask
+    container_name: backendFlask
     environment:
       - FLASK_DEBUG=True
       - PYTHONUNBUFFERED=True
@@ -21,7 +21,7 @@ services:
 
   mongo:
     image: mongo:6.0.1
-    container_name: mongoDB
+    container_name: mongoContainer
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
@@ -35,15 +35,15 @@ services:
 
   mongo-express:
     image: mongo-express:1.0.0-alpha.4
-    container_name: mongo-express
+    container_name: mongoExpress
     restart: unless-stopped
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mongoDB
+      - ME_CONFIG_MONGODB_SERVER=mongoContainer
       - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=True
       - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER}
       - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASSWORD}
-      - ME_CONFIG_MONGODB_URL="mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongoDB:27017/"
+      - ME_CONFIG_MONGODB_URL="mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongoContainer:27017/"
       - ME_CONFIG_BASICAUTH_USERNAME=${MONGOEXPRESS_LOGIN}
       - ME_CONFIG_BASICAUTH_PASSWORD=${MONGOEXPRESS_PASSWORD}
     networks:
@@ -55,7 +55,7 @@ services:
 
   nginx:
     build: ./nginx
-    container_name: nginx
+    container_name: nginxContainer
     restart: unless-stopped
     ports:
       - "80:80"
