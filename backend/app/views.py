@@ -11,7 +11,7 @@ def index():
     return {'message': 'Hello, this is my diploma work'}
 
 
-@app.route('/api/wb/<string:query>', methods=['GET'])
+@app.route('/api/wb/<string:query>', methods=['GET']) #Оставлю пока как пример
 async def parse_wb(query):
     connector = connect_mongo('WILDBERRIES')
     is_in_db = check_query_in_db(query, QueryWB)
@@ -22,7 +22,7 @@ async def parse_wb(query):
     return ProductWB.objects().to_json()
     # return products
     # download_wildberries_products()
-@app.route('/api/wb/get_data', methods=['GET'])
+@app.route('/api/wb/get_data', methods=['GET']) #Оставлю пока как пример
 def get_data_wb():
     filters = {}
     if request.args.get('seller'):
@@ -43,21 +43,3 @@ def get_data_wb():
         seller__istartswith=filters['seller']
     ).to_json())
     return flask.Response(status=200)
-
-@app.route('/get_data', methods=['GET'])
-def get_data():
-    connector = connect_mongo('wildberries')
-    print('--------')
-    print(list(connector['products'].find()))
-    print('--------')
-    return flask.Response(status=200)
-
-
-@app.route('/parser/api/v1.0/yamarket/<string:query>', methods=['GET'])
-def parse_yamarket(query):
-    pass
-
-
-@app.route('/parser/api/v1.0/petshop/<string:query>', methods=['GET'])
-def parse_petshop(query):
-    pass
