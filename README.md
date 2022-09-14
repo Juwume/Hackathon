@@ -1,5 +1,5 @@
 # Hackathon Readme
-
+A repository for developing news ranking service for a hackaton 
 # Stack
 - ![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
 - ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
