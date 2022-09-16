@@ -3,7 +3,6 @@ from datetime import timedelta, datetime
 from mongoengine import connect
 
 
-
 def connect_mongo(db_name: str):
     """ Util to make a connection to the mongoDB
     :param db_name: Name of the certain database

@@ -1,15 +1,20 @@
 import flask
 from app import app
-from .scripts import download_wildberries_comments
+from .scripts.scripts import download_wildberries_comments
 from .utils import connect_mongo, check_query_in_db
 from .models.WB import ProductWB, QueryWB
 from flask import request
+from .scripts.vc import download_vc_articles
 
 
 @app.route('/')
 def index():
     return {'message': 'Hello, this is my diploma work'}
 
+@app.route('/api/vc/<string:query>', methods=['GET'])
+async def parse_vc(query):
+    await download_vc_articles()
+    return flask.Response(status=200)
 
 @app.route('/api/wb/<string:query>', methods=['GET']) #Оставлю пока как пример
 async def parse_wb(query):
