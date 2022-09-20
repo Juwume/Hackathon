@@ -13,8 +13,8 @@ def index():
 
 @app.route('/api/vc/<string:query>', methods=['GET'])
 async def parse_vc(query):
-    await download_vc_articles()
-    return flask.Response(status=200)
+    res = await download_vc_articles()
+    return [article.to_json() for article in res]
 
 @app.route('/api/wb/<string:query>', methods=['GET']) #Оставлю пока как пример
 async def parse_wb(query):
